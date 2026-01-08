@@ -202,11 +202,14 @@ ul {
 }
 
 .brand-logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-navy);
-    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
