@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
@@ -86,4 +87,47 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
+
+    // --- LIGHTBOX FUNCTIONALITY ---
+    const lightbox = document.getElementById('lightbox');
+
+    if (lightbox) {
+        const lightboxImg = lightbox.querySelector('img');
+        const closeBtn = lightbox.querySelector('.close-btn');
+        // Select gallery ITEMS instead of images directly
+        // This fixes the issue where the overlay blocks clicks to the image
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        // Open Lightbox
+        galleryItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent bubbling
+                const img = item.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Disable scroll
+                }
+            });
+        });
+
+        // Close Lightbox
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scroll
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Escape Key to Close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    }
+
 });
