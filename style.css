@@ -575,6 +575,42 @@ ul {
     margin-top: 1rem;
 }
 
+/* Styling Harga Baru & Diskon */
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 1rem;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: var(--text-gray);
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    font-weight: 400;
+}
+
+.discount-badge {
+    display: inline-block;
+    background-color: #ef4444; /* Warna merah untuk diskon */
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.current-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary-navy);
+    font-weight: 700;
+}
+
 /* Featured card title color override */
 .package-card.featured .package-title {
     color: #D4AF37;
